@@ -28,14 +28,27 @@ function App() {
     setMovies(results);
     setMovie(results[0]);
   };
+  const searchMovies = (e) => {
+    e.preventDefault();
+    fetchMovies(searchKey);
+  };
   useEffect(() => {
     fetchMovies();
   }, []);
   return (
     <div>
-      <h1 className="p-3 text-success-emphasis text-center bg-primary-subtle border border-primary-subtle rounded-3 ">
+      <h2 className="mt-5 mb-5 p-3 text-success-emphasis text-center bg-success-subtle border border-success-subtle rounded-3 ">
         Trailer de peliculas
-      </h1>
+      </h2>
+      <form className="container mb-5 mt-5" onSubmit={searchMovies}>
+        <input
+          className="text-success border border-success-subtle rounded-3"
+          type="text"
+          placeholder="search"
+          onChange={(e) => setSearchkey(e.target.value)}
+        />
+        <button className="btn btn-success">search</button>
+      </form>
       {/* contenedor que a mostrar poster de la peliculas actuales */}
       <div className="container mt-3">
         <div className="row">
@@ -47,7 +60,7 @@ function App() {
                 height={600}
                 width="100%"
               />
-              <h4 className="text-center text-primary">{movie.title}</h4>
+              <h4 className="text-center text-success">{movie.title}</h4>
             </div>
           ))}
         </div>
